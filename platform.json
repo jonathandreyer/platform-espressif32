@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/platformio/platform-espressif32.git"
+    "url": "https://github.com/jonathandreyer/platform-espressif32.git"
   },
   "version": "4.4.0",
   "frameworks": {
@@ -44,7 +44,7 @@
       "owner": "espressif",
       "version": "8.4.0+2021r2-patch3"
     },
-     "toolchain-xtensa-esp32s3": {
+    "toolchain-xtensa-esp32s3": {
       "type": "toolchain",
       "optional": true,
       "owner": "espressif",
@@ -83,9 +83,8 @@
     "framework-espidf": {
       "type": "framework",
       "optional": true,
-      "owner": "platformio",
-      "version": "~3.40302.0",
-      "optionalVersions": ["~3.40001.0"]
+      "owner": "jonathandreyer",
+      "version": "https://github.com/jonathandreyer/framework-espidf.git#espidf-440"
     },
     "tool-esptoolpy": {
       "type": "uploader",
