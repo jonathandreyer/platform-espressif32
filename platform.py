@@ -95,13 +95,27 @@ class Espressif32Platform(PlatformBase):
                 elif p in ("tool-mconf", "tool-idf") and "windows" in get_systype():
                     self.packages[p]["optional"] = False
 
-        if mcu in ("esp32s2", "esp32c3"):
+        if mcu == "esp32":
+            self.packages["toolchain-xtensa-esp32s2"]["optional"] = True
+            self.packages["toolchain-xtensa-esp32s3"]["optional"] = True
+            self.packages["toolchain-riscv32-esp"]["optional"] = True
+            self.packages["toolchain-esp32s2ulp"]["optional"] = True
+        if mcu in ("esp32s2", "esp32s3", "esp32c3"):
             self.packages.pop("toolchain-xtensa-esp32", None)
             self.packages.pop("toolchain-esp32ulp", None)
-            # RISC-V based toolchain for ESP32C3 and ESP32S2 ULP
-            self.packages["toolchain-riscv32-esp"]["optional"] = False
+            # Potential packages used as optional (default value)
+            self.packages["toolchain-xtensa-esp32s2"]["optional"] = True
+            self.packages["toolchain-xtensa-esp32s3"]["optional"] = True
+            self.packages["toolchain-riscv32-esp"]["optional"] = True
+            self.packages["toolchain-esp32s2ulp"]["optional"] = True
             if mcu == "esp32s2":
                 self.packages["toolchain-xtensa-esp32s2"]["optional"] = False
+                self.packages["toolchain-esp32s2ulp"]["optional"] = False
+            if mcu == "esp32s3":
+                self.packages["toolchain-xtensa-esp32s3"]["optional"] = False
+                self.packages["toolchain-esp32s2ulp"]["optional"] = False
+            if mcu == "esp32c3":
+                self.packages["toolchain-riscv32-esp"]["optional"] = False
 
         is_legacy_project = (
             build_core == "mbcwb"
@@ -113,6 +127,7 @@ class Espressif32Platform(PlatformBase):
             for toolchain in (
                 "toolchain-xtensa-esp32",
                 "toolchain-xtensa-esp32s2",
+                "toolchain-xtensa-esp32s3",
                 "toolchain-riscv32-esp",
             ):
                 self.packages.pop(toolchain, None)
@@ -334,6 +349,7 @@ class Espressif32Platform(PlatformBase):
         toolchain_remap = {
             "xtensa-esp32-elf-gcc": "toolchain-xtensa-esp32",
             "xtensa-esp32s2-elf-gcc": "toolchain-xtensa-esp32s2",
+            "xtensa-esp32s3-elf-gcc": "toolchain-xtensa-esp32s3",
             "riscv32-esp-elf-gcc": "toolchain-riscv32-esp",
         }
 
