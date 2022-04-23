@@ -84,7 +84,7 @@
       "type": "framework",
       "optional": true,
       "owner": "jonathandreyer",
-      "version": "https://github.com/jonathandreyer/framework-espidf.git#espidf-440"
+      "version": "https://github.com/jonathandreyer/framework-espidf.git#espidf-441"
     },
     "tool-esptoolpy": {
       "type": "uploader",
