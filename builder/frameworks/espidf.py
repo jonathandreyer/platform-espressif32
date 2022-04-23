@@ -115,7 +115,7 @@ def is_cmake_reconfigure_required(cmake_api_reply_dir):
         os.path.join(PROJECT_SRC_DIR, "CMakeLists.txt"),
     ]
     cmake_preconf_dir = os.path.join(BUILD_DIR, "config")
-    deafult_sdk_config = os.path.join(PROJECT_DIR, "sdkconfig.defaults")
+    default_sdk_config = os.path.join(PROJECT_DIR, "sdkconfig.defaults")
 
     for d in (cmake_api_reply_dir, cmake_preconf_dir):
         if not os.path.isdir(d) or not os.listdir(d):
@@ -128,8 +128,8 @@ def is_cmake_reconfigure_required(cmake_api_reply_dir):
         SDKCONFIG_PATH
     ) > os.path.getmtime(cmake_cache_file):
         return True
-    if os.path.isfile(deafult_sdk_config) and os.path.getmtime(
-        deafult_sdk_config
+    if os.path.isfile(default_sdk_config) and os.path.getmtime(
+        default_sdk_config
     ) > os.path.getmtime(cmake_cache_file):
         return True
     if any(
