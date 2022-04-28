@@ -178,6 +178,7 @@ class Espressif32Platform(PlatformBase):
         supported_debug_tools = [
             "cmsis-dap",
             "esp-prog",
+            "esp_usb_jtag",
             "iot-bus-jtag",
             "jlink",
             "minimodule",
@@ -213,6 +214,8 @@ class Espressif32Platform(PlatformBase):
                     openocd_interface = "ftdi/esp32s2_kaluga_v1"
                 else:
                     openocd_interface = "ftdi/esp32_devkitj_v1"
+            elif link in ("esp_usb_jtag"):
+                openocd_interface = link
             else:
                 openocd_interface = "ftdi/" + link
 
